@@ -73,5 +73,15 @@ namespace CSharpPersionerProject
             mainForm.UpdateRow(rowDatas);
             this.Close();
         }
+
+        private void btnInsert_Click(object sender, EventArgs e)
+        {
+            string[] rowDatas = {
+                txtName.Text,
+                txtPublisher.Text,
+                txtPrice.Text };
+            mainForm.InsertRow(rowDatas);
+            this.Close();
+        }
     }
 }
