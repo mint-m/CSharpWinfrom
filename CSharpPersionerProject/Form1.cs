@@ -41,7 +41,6 @@ namespace CSharpPersionerProject
             dataAdapter.Fill(dataSet, "book");
             dataGridView3.DataSource = dataSet.Tables["book"];
 
-            //
             string sql = "SELECT distinct publisher FROM book";
             MySqlCommand cmd = new MySqlCommand(sql, conn);
 
@@ -385,12 +384,14 @@ namespace CSharpPersionerProject
                 string queryStr = "INSERT INTO orders (custid, bookid, saleprice, orderdate) " +
                     "VALUES(@custid, @bookid, @saleprice, @orderdate)";
                 dataAdapter.InsertCommand = new MySqlCommand(queryStr, conn);
+                //dataAdapter.InsertCommand.Parameters.Add("@orderid", MySqlDbType.Int32);
                 dataAdapter.InsertCommand.Parameters.Add("@custid", MySqlDbType.Int32);
                 dataAdapter.InsertCommand.Parameters.Add("@bookid", MySqlDbType.Int32);
                 dataAdapter.InsertCommand.Parameters.Add("@saleprice", MySqlDbType.Int32);
                 dataAdapter.InsertCommand.Parameters.Add("@orderdate", MySqlDbType.Date);
 
                 #region Parameter를 이용한 처리
+                //dataAdapter.InsertCommand.Parameters["@orderid"].Value = rowDatas[0];
                 dataAdapter.InsertCommand.Parameters["@custid"].Value = rowDatas[0];
                 dataAdapter.InsertCommand.Parameters["@bookid"].Value = rowDatas[1];
                 dataAdapter.InsertCommand.Parameters["@saleprice"].Value = rowDatas[2];
@@ -656,7 +657,5 @@ namespace CSharpPersionerProject
                 Dig.Dispose();
             }
         }
-
-        //
     }
 }
